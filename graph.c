@@ -158,4 +158,11 @@ void findPath(struct Node* nodes, int nodeCount, int start, int end, int* pathLi
         int added = isAdded(pathList, pathCount, nodes[index].adjacentNodes[i]);
         if (!added) {
             pathList[pathCount] = nodes[index].adjacentNodes[i];
-            costList[pathCount
+            costList[pathCountlength] = nodes[index].costs[i];
+            length++;
+            findPath(nodes, count, nodes[index].adjacentNodes[i], end, path, costs, length);
+            length--;
+        }
+    }
+}
+
