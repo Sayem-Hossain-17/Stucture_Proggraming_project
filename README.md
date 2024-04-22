@@ -1,1 +1,1 @@
-# projectgit
+# Structure_Proggraming_project
