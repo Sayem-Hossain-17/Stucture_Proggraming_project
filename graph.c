@@ -2,6 +2,7 @@ Sure, here's your code with proper variable names and naming conventions applied
 
 ```c
 #include <stdio.h>
+#include<stdlib.h>
 
 // Define a struct to represent a node in the graph
 struct Node {
