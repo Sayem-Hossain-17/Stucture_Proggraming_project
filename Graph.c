@@ -1,6 +1,4 @@
-Sure, here's your code with proper variable names and naming conventions applied:
 
-```c
 #include <stdio.h>
 #include<stdlib.h>
 
@@ -26,8 +24,8 @@ int main() {
 
     // Loop to input nodes and edges
     while (1) {
-        printf("Enter n1, n2, cost (or -9 to exit): ");
-        scanf("%d %d %d", &n1, &n2, &c);
+        printf("Enter node1, node2, cost (or -9 to exit): ");
+        scanf("%d %d %d", &node1, &node2, &cost);
         if (node1 == -9 || node2 == -9 || cost == -9) {
             break;
         }
@@ -86,7 +84,7 @@ int checkTriangle(struct Node* nodes, int nodeCount) {
                     }
                 }
                 // If all three nodes form a triangle, increment the triangle count
-                if (e1 == 2 && e2 == 2 && e3 == 2) {
+                if (edge1 == 2 && edge2 == 2 && edge3 == 2) {
                     printf("Triangle nodes: %d %d %d\n", node1, node2, node3);
                     triangleCount++;
                 }
@@ -133,14 +131,15 @@ int isAdded(int* list, int listCount, int nodeId) {
 }
 
 // Function to find all possible paths from start to end node
+// Function to find all possible paths from start to end node
 void findPath(struct Node* nodes, int nodeCount, int start, int end, int* pathList, int* costList, int pathCount) {
-    int index = 0, i = 0, j = 0, k = 0;
+    int index = 0;
 
     // Check if list contains the end node
     if (pathList[pathCount - 1] == end) {
         int totalCost = 0;
         printf("\nPath: ");
-        for (i = 0; i < pathCount; i++) {
+        for (int i = 0; i < pathCount; i++) {
             printf("%d ", pathList[i]);
             totalCost += costList[i];
         }
@@ -149,20 +148,19 @@ void findPath(struct Node* nodes, int nodeCount, int start, int end, int* pathLi
     }
 
     // Find the index of the starting node
-    for (i = 0; i < nodeCount; i++) {
+    for (int i = 0; i < nodeCount; i++) {
         if (nodes[i].nodeId == start) { index = i; break; }
     }
 
     // Iterate through adjacent nodes and recursively find paths
-    for (i = 0; i < nodes[index].adjCount; i++) {
+    for (int i = 0; i < nodes[index].adjCount; i++) {
         int added = isAdded(pathList, pathCount, nodes[index].adjacentNodes[i]);
         if (!added) {
             pathList[pathCount] = nodes[index].adjacentNodes[i];
-            costList[pathCountlength] = nodes[index].costs[i];
-            length++;
-            findPath(nodes, count, nodes[index].adjacentNodes[i], end, path, costs, length);
-            length--;
+            costList[pathCount] = nodes[index].edgeCosts[i];
+            pathCount++;
+            findPath(nodes, nodeCount, nodes[index].adjacentNodes[i], end, pathList, costList, pathCount);
+            pathCount--;
         }
     }
 }
-
